@@ -1,0 +1,36 @@
+@startuml
+title Petición HTTP con interceptor que añade JWT
+
+actor Usuario as U
+participant "Componente Angular" as C
+participant "Servicio Angular" as S
+participant "HttpClient" as HC
+participant "Interceptor JWT" as I
+participant "Servicio de Autenticación\n(almacena token)" as A
+participant "Backend API" as B
+
+U -> C : Acción del usuario (p.ej. ver perfil)
+C -> S : obtenerPerfil()
+S -> HC : GET /api/perfil
+
+' La petición pasa por la cadena de interceptores
+HC -> I : intercept(req, next)
+
+' El interceptor necesita el token
+I -> A : getToken()
+A --> I : token JWT
+
+' El interceptor clona la petición\ny añade la cabecera Authorization
+I -> I : reqClonada = req.clone(\n  Authorization: Bearer <token>\n)
+
+' El interceptor deja seguir la petición
+I -> HC : next.handle(reqClonada)
+HC -> B : GET /api/perfil\nAuthorization: Bearer <token>
+
+' El backend valida el JWT y responde
+B --> HC : 200 OK + datos perfil
+HC --> S : datos perfil
+S --> C : datos perfil
+C --> U : muestra datos en pantalla
+
+@enduml

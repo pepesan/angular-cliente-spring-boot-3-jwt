@@ -1,0 +1,23 @@
+<div class="p-4 border rounded">
+  <h2>Refrescar access token</h2>
+
+  <button
+    type="button"
+    (click)="refreshAccessToken()"
+    [disabled]="loading()"
+  >
+    {{ loading() ? 'Refrescando...' : 'Pedir nuevo access token' }}
+  </button>
+
+  @if (message()) {
+    <p style="margin-top: 1rem;">{{ message() }}</p>
+  }
+
+  @if (accessToken()) {
+    <div style="margin-top: 1rem;">
+      <strong>Access token recibido:</strong>
+      <pre style="white-space: pre-wrap; word-break: break-all;">{{ accessToken() }}</pre>
+    </div>
+  }
+</div>
+
