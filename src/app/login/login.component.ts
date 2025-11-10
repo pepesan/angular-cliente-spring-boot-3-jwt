@@ -16,7 +16,8 @@ import { AuthService } from '../services/auth.service';
       <button (click)="logout()">Cerrar sesión</button>
     } @else {
       <form (ngSubmit)="onSubmit()">
-        <h2>admin/admin</h2>
+        <h2>admin/admin (ROLE_ADMIN)</h2>
+        <h2>pepesan/password (ROLE_USER)</h2>
         <div>
           <label>Usuario o email</label><br />
           <input
