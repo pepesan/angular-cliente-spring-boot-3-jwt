@@ -2,6 +2,22 @@
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.9.
 
+## Prerequisites
+Before you begin, ensure you have met the following requirements:
+- You have installed [Node.js](https://nodejs.org/) (version 14.x or higher).
+- You have installed [Angular CLI](https://angular.io/cli) globally using npm:
+- ```bash
+  npm install -g @angular/cli
+  ```
+- You have a code editor like [Visual Studio Code](https://code.visualstudio.com/) installed.
+- You have access to a terminal or command prompt.
+- You have a working internet connection to download dependencies.
+- ```bash
+  npm install
+  ```
+  
+
+
 ## Development server
 
 To start a local development server, run:
